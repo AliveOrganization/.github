@@ -1,0 +1,61 @@
+####################################################
+### Read documentation before updating this file ###
+###    Add DOCUMENTATION LINK HERE
+####################################################
+
+name: New Fix
+description: Issue for bug fixes
+title: "fix: [ADD TITLE HERE]"
+labels: ["bug"]
+projects: ["AliveOrganization/2"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the issue
+      placeholder: When I click here it happens this...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What was the expected result?
+      placeholder: I expected this to happen...
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Select the Status
+      options:
+        - Todo
+        - In Progress
+        - Done
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Select the Type
+      options:
+        - Design 🎨
+        - Mobile📱
+        - Web 🌏
+        - Archi ⎇
+        - Cloud ☁️
+        - Back-end ⚙️
+        - Database 🗄️
+        - Task 📝
+    validations:
+      required: true

@@ -1,0 +1,43 @@
+####################################################
+### Read documentation before updating this file ###
+###    Add DOCUMENTATION LINK HERE
+####################################################
+
+name: New Refactor
+description: Code/Design update without added functionality or performance improvements.
+title: "refactor: [ADD TITLE HERE]"
+labels: ["code update"]
+projects: ["AliveOrganization/2"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the update
+      placeholder: Actually is like this and should be like this...
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Select the Status
+      options:
+        - Todo
+        - In Progress
+        - Done
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Select the Type
+      options:
+        - Design 🎨
+        - Mobile📱
+        - Web 🌏
+        - Archi ⎇
+        - Cloud ☁️
+        - Back-end ⚙️
+        - Database 🗄️
+        - Task 📝
+    validations:
+      required: true
