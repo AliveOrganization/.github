@@ -1,0 +1,87 @@
+name: Add issue to GitHub Project + Set default fields
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  set_defaults:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GH_PROJECT_TOKEN }}
+          script: |
+            const projectId = "PVT_kwDODEakFs4A12a7";
+            const issueNodeId = context.payload.issue.node_id;
+
+            const statusFieldId = "PVTSSF_lADODEakFs4A12a7zgrQPrw";
+            const statusTodoOptionId = "f75ad846";
+
+            // 1. Ajouter l'issue au Project
+            const addItemResult = await github.graphql(`
+              mutation {
+                addProjectV2ItemById(input: {
+                  projectId: "${projectId}",
+                  contentId: "${issueNodeId}"
+                }) {
+                  item {
+                    id
+                  }
+                }
+              }
+            `);
+
+            const itemId = addItemResult.addProjectV2ItemById.item.id;
+
+            // 2. Récupérer les champs actuels de l'item dans le project
+            const itemFields = await github.graphql(`
+              query {
+                node(id: "${itemId}") {
+                  ... on ProjectV2Item {
+                    fieldValues(first: 10) {
+                      nodes {
+                        ... on ProjectV2ItemFieldSingleSelectValue {
+                          field {
+                            id
+                            name
+                          }
+                          optionId
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `);
+
+            const fieldNodes = itemFields.node.fieldValues.nodes;
+
+            const getFieldOption = (fieldId) => {
+              const field = fieldNodes.find(f => f.field.id === fieldId);
+              return field ? field.optionId : null;
+            };
+
+            const currentStatus = getFieldOption(statusFieldId);
+
+            // 3. Si Status est vide, le mettre à Todo
+            if (!currentStatus) {
+              console.log("Setting default Status → Todo");
+              await github.graphql(`
+                mutation {
+                  updateProjectV2ItemFieldValue(input: {
+                    projectId: "${projectId}",
+                    itemId: "${itemId}",
+                    fieldId: "${statusFieldId}",
+                    value: {
+                      singleSelectOptionId: "${statusTodoOptionId}"
+                    }
+                  }) {
+                    projectV2Item {
+                      id
+                    }
+                  }
+                }
+              `);
+            }

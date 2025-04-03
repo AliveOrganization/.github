@@ -3,7 +3,7 @@
 ###    Add DOCUMENTATION LINK HERE 
 ####################################################
 
-name: Classic Task
+name: New Classic Task
 description: Issue for new classic task
 title: "task: [ADD TITLE HERE]"
 labels: ["task"]
@@ -13,30 +13,5 @@ body:
     id: description
     attributes:
       label: Describe the task
-    validations:
-      required: true
-  - type: dropdown
-    id: status
-    attributes:
-      label: Select the Status
-      options:
-        - Todo
-        - In Progress
-        - Done
-    validations:
-      required: true
-  - type: dropdown
-    id: type
-    attributes:
-      label: Select the Type
-      options:
-        - Design 🎨
-        - Mobile📱
-        - Web 🌏
-        - Archi ⎇
-        - Cloud ☁️
-        - Back-end ⚙️
-        - Database 🗄️
-        - Task 📝
     validations:
       required: true

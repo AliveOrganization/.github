@@ -34,28 +34,3 @@ body:
       placeholder: I expected this to happen...
     validations:
       required: true
-  - type: dropdown
-    id: status
-    attributes:
-      label: Select the Status
-      options:
-        - Todo
-        - In Progress
-        - Done
-    validations:
-      required: true
-  - type: dropdown
-    id: type
-    attributes:
-      label: Select the Type
-      options:
-        - Design 🎨
-        - Mobile📱
-        - Web 🌏
-        - Archi ⎇
-        - Cloud ☁️
-        - Back-end ⚙️
-        - Database 🗄️
-        - Task 📝
-    validations:
-      required: true
