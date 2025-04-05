@@ -9,10 +9,6 @@ title: "feat: [ADD TITLE HERE]"
 labels: ["feature", "enhancement"]
 projects: ["AliveOrganization/2"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Je suis pas sexiste
   - type: textarea
     id: description
     attributes:
